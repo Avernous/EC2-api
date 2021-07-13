@@ -1,9 +1,23 @@
 const express = require('express')
-const app = express();
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
+const mongoose = require('mongoose');
 
+const app = express();
+const dbURI = "mongodb://localhost:27017";
 const port = 3000;
+
+mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
+    .then((result) => { 
+        console.log('connected to DB');
+        app.listen(port, () => {
+            console.log(`Server Listening on Port: ${port}`);
+        })
+    })
+    .catch((err) => {
+        console.log(err);
+    } )
+
 // options for generating documentation
 const swaggerOptions = {
     swaggerDefinition:{
@@ -27,17 +41,14 @@ app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
  /**
   * @swagger
-  *     /customers:
+  *     /weapons:
   *     get:
   *         description: Used to request all Customers
   *         responses:
   *             '200':
 *                   description: A successful respone
   */
-app.get('/customers', (req, res) => {
+app.get('/weapons', (req, res) => {
     res.send('Customer Results')
 })
 
-app.listen(port, () => {
-    console.log(`Server Listening on Port: ${port}`);
-})
