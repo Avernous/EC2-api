@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/Avernous/EC2-api/issues"
   },
-  "homepage": "https://github.com/Avernous/EC2-api#readme"
+  "homepage": "https://github.com/Avernous/EC2-api#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
