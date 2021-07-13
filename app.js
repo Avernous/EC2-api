@@ -23,6 +23,17 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 //Routes
+
+
+ /**
+  * @swagger
+  *     /customers:
+  *     get:
+  *         description: Used to request all Customers
+  *         responses:
+  *             '200':
+*                   description: A successful respone
+  */
 app.get('/customers', (req, res) => {
     res.send('Customer Results')
 })
