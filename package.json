@@ -1,0 +1,20 @@
+{
+  "name": "ec2-api",
+  "version": "1.0.0",
+  "description": "an API to get eclipse phase 2 data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Avernous/EC2-api.git"
+  },
+  "keywords": [],
+  "author": "Connor Fouks",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Avernous/EC2-api/issues"
+  },
+  "homepage": "https://github.com/Avernous/EC2-api#readme"
+}
