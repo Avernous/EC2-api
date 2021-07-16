@@ -2,6 +2,7 @@ const express = require('express')
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const mongoose = require('mongoose');
+const router = express.Router();
 
 const app = express();
 const dbURI = "mongodb://localhost:27017";
@@ -34,6 +35,7 @@ const swaggerOptions = {
 }
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
+app.use('/', router)
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 //Routes
