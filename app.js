@@ -2,7 +2,7 @@ const express = require('express')
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const mongoose = require('mongoose');
-const router = express.Router();
+const router = require("./routes/routes.js");
 
 const app = express();
 const dbURI = "mongodb://localhost:27017";
@@ -28,14 +28,14 @@ const swaggerOptions = {
             contact: {
                 name: "Connor Fouks"
             },
-            servers: ["http://localhost:3000"],
+            servers: ["http://localhost:3000/"],
         }
     },
     apis: ["app.js"]
 }
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
-app.use('/', router)
+app.use('/api/v1', router)
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 //Routes
@@ -50,7 +50,5 @@ app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
   *             '200':
 *                   description: A successful respone
   */
-app.get('/weapons', (req, res) => {
-    res.send('Customer Results')
-})
+
 
