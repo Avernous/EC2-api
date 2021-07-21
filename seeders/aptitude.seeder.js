@@ -1,11 +1,11 @@
-const Reputation = require('../models/reputation.js');
+const Aptitude = require('../models/aptitude.js');
 const fs = require('fs');
 
 module.exports = function (){
-    console.log("-reputation.seeder.js");
+    console.log("-aptitude.seeder.js");
     let pools;
     try{
-        let rawdata = fs.readFileSync('json/reputation.json', 'utf8');
+        let rawdata = fs.readFileSync('json/aptitude.json', 'utf8');
         json = JSON.parse(rawdata);
     }
     catch(err){
@@ -13,7 +13,7 @@ module.exports = function (){
     }
 
     try{
-        Reputation.insertMany(json);
+        Aptitude.insertMany(json);
     }
     catch(err){
         console.error(err)
