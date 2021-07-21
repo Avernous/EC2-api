@@ -3,9 +3,10 @@ const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const mongoose = require('mongoose');
 const router = require("./routes/routes.js");
+const seeder = require('./seeders/seeder.js');
 
 const app = express();
-const dbURI = "mongodb://localhost:27017";
+const dbURI = "mongodb://localhost:27017/ec2";
 const port = 3000;
 
 mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
@@ -14,6 +15,10 @@ mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
         app.listen(port, () => {
             console.log(`Server Listening on Port: ${port}`);
         })
+        console.log("starting Seeding: app.js");
+        //drop then seed database
+        mongoose.connection.db.dropDatabase('ec2');
+        seeder();
     })
     .catch((err) => {
         console.log(err);
