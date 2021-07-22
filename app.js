@@ -17,8 +17,8 @@ mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
         })
         console.log("starting Seeding: app.js");
         //drop then seed database
-        mongoose.connection.db.dropDatabase('ec2');
-        seeder();
+        //mongoose.connection.db.dropDatabase('ec2');
+        //seeder();
     })
     .catch((err) => {
         console.log(err);
@@ -36,24 +36,14 @@ const swaggerOptions = {
             servers: ["http://localhost:3000/"],
         }
     },
-    apis: ["app.js"]
+    apis: ["./routes/*.js","app.js"]
 }
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api/v1', router)
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-//Routes
 
 
- /**
-  * @swagger
-  *     /weapons:
-  *     get:
-  *         description: Used to request all Customers
-  *         responses:
-  *             '200':
-*                   description: A successful respone
-  */
 
 
