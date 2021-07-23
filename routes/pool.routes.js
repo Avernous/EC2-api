@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Pool = require('../models/pool.js');
 const Aptitude = require('../models/aptitude.js');
+const mongoose = require('mongoose');
 // url: /api/v1/pools
 
  /**
@@ -14,10 +15,15 @@ const Aptitude = require('../models/aptitude.js');
   *                 description: A successful respone
   */
 router.get('/pools', (req, res) => {
-    Pool.find()
-        .then((result) => {
-            res.json(result)
-        })
+    Pool.find((err, results) => {
+        if(err){
+            console.log(err.name);
+            res.sendStatus(500);
+        }
+        else{
+            res.json(results)
+        }
+    })
 });
 
  /**
@@ -30,42 +36,26 @@ router.get('/pools', (req, res) => {
   *                 description: A successful respone
   */
 router.get('/pools/:id', (req, res) => {
-    const input = req.params.id;
-    console.log(input);
-    Pool.findById("dfasdfasdf")
-    .then((result) => {
-        console.log(result);
-        if(!result){
-            return res.status(404).end();
+    console.log(req.params.id);
+    Pool.findById(req.params.id, (err, results) => {
+        if(err){
+            if(err.name === "CastError"){
+                res.sendStatus(400);
+            }
+            else{
+                res.sendStatus(500);
+            }
+            
         }
         else{
-            return res.json(doc);
-        }
-
-    }).catch(() => {
-        res.statusCode = 404;
-    });
-
-});
-
-router.post('/pools', (req, res) => {
-    const input = {
-        name: "ballz",
-        uses:[
-            {
-                name: "loremipsumloremipsum",
-                descripiton: "loremipsumloremipsumloremipsumloremipsumloremipsumloremipsumloremipsum"
+            if(!results){
+                res.sendStatus(404);
             }
-        ]
-    }
-    Pool.Save(input)
-    .then((result) => {
-        console.log(result);
-        return res.json(result);
-
-    }).catch(() => {
-        res.statusCode = 404;
-    });
+            else{
+                res.json(results);
+            }
+        }
+    })
 
 });
 

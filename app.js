@@ -2,6 +2,8 @@ const express = require('express')
 const swaggerJsDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser')
+
 const router = require("./routes/routes.js");
 const seeder = require('./seeders/seeder.js');
 
@@ -9,7 +11,7 @@ const app = express();
 const dbURI = "mongodb://localhost:27017/ec2";
 const port = 3000;
 
-mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true, bufferMaxEntries: 0})
     .then((result) => { 
         console.log('connected to DB');
         app.listen(port, () => {
@@ -23,6 +25,8 @@ mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
     .catch((err) => {
         console.log(err);
     } )
+
+//app.listen(3000);
 
 // options for generating documentation
 const swaggerOptions = {
@@ -40,6 +44,8 @@ const swaggerOptions = {
 }
 
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
+
+app.use(bodyParser.json())
 app.use('/api/v1', router)
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
