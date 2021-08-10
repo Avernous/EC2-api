@@ -44,16 +44,10 @@ router.get('/pools/:id', (req, res) => {
             }
             else{
                 res.sendStatus(500);
-            }
-            
+            } 
         }
         else{
-            if(!results){
-                res.sendStatus(404);
-            }
-            else{
-                res.json(results);
-            }
+            res.json(results);
         }
     })
 
