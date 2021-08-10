@@ -9,14 +9,14 @@ const seeder = require('./seeders/seeder.js');
 
 const app = express();
 const dbURI = "mongodb://localhost:27017/ec2";
-const port = 3000;
+//const port = 3000;
 
 mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true, bufferMaxEntries: 0})
     .then((result) => { 
         console.log('connected to DB');
-        app.listen(port, () => {
-            console.log(`Server Listening on Port: ${port}`);
-        })
+        // app.listen(port, () => {
+        //     console.log(`Server Listening on Port: ${port}`);
+        // })
         console.log("starting Seeding: app.js");
         //drop then seed database
         //mongoose.connection.db.dropDatabase('ec2');
@@ -48,6 +48,8 @@ const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use(bodyParser.json())
 app.use('/api/v1', router)
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
+module.exports = app;
 
 
 
