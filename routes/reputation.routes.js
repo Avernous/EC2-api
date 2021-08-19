@@ -34,7 +34,6 @@ router.get('/reputations', (req, res) => {
   *                 description: A successful respone
   */
 router.get('/reputations/:id', (req, res) => {
-    console.log(req.params.id);
     Reputation.findById(req.params.id, (err, results) => {
         if(err){
             if(err.name === "CastError"){

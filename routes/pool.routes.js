@@ -36,7 +36,6 @@ router.get('/pools', (req, res) => {
   *                 description: A successful respone
   */
 router.get('/pools/:id', (req, res) => {
-    console.log(req.params.id);
     Pool.findById(req.params.id, (err, results) => {
         if(err){
             if(err.name === "CastError"){
