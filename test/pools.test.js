@@ -1,8 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 let server = require('../app.js');
-const Pool = require('../models/pool');
-const Pools = require('../models/pool')
 
 
 //assertion style
@@ -17,7 +15,6 @@ describe("Get /pools", () => {
             chai.request(server)
                 .get("/api/v1/pools")
                 .end((err, response) => {
-                    //console.log(response.body[0]);
                     response.should.have.status(200);
                     response.should.be.json;
                     done();

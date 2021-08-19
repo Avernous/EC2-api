@@ -17,7 +17,6 @@ describe("Get /reputations", () => {
             chai.request(server)
                 .get("/api/v1/reputations")
                 .end((err, response) => {
-                    //console.log(response.body[0]);
                     response.should.have.status(200);
                     response.should.be.json;
                     done();
