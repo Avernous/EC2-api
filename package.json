@@ -4,7 +4,7 @@
   "description": "an API to get eclipse phase 2 data",
   "main": "start.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "nodemon start.js"
   },
   "repository": {
@@ -21,10 +21,13 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "jest": "^27.0.6",
     "mongoose": "^5.13.2",
-    "supertest": "^6.1.4",
     "swagger-jsdoc": "^6.1.0",
     "swagger-ui-express": "^4.1.6"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.0.3"
   }
 }
